@@ -2,7 +2,7 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import {Button} from "../src/components/ui/button";
+import { Button } from "../src/components/ui/button";
 import { signIn } from "next-auth/react";
 
 interface IAuth {
@@ -20,22 +20,26 @@ const Signin = ({
   userAuthOption,
   userAuthAction,
 }: IAuth) => {
-
   const [loading, setLoading] = useState<boolean>(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    signIn("credentials", { email:formData.get("email"), password: formData.get("password")});
+    signIn("credentials", {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    });
   };
 
   return (
     <div className="">
       <div className="pt-12 flex flex-col lg:grid lg:grid-cols-10">
         <div className="min-h-screen flex flex-col py-12 px-2 col-span-4 justify-between border-r">
-
           <div className="p-2 ">
             <Link href={"/"}>
-              <Button variant={"outline"} className="cursor-pointer border border-gray-400 hover:bg-gray-200 flex justify-center items-center py-1 px-2 gap-1 text-sm font-medium rounded transition-all duration-500">
+              <Button
+                variant={"outline"}
+                className="cursor-pointer border border-gray-400 hover:bg-gray-200 flex justify-center items-center py-1 px-2 gap-1 text-sm font-medium rounded transition-all duration-500"
+              >
                 <ArrowLeft className="h-5 w-5 font-light text-base" /> Home
               </Button>
             </Link>

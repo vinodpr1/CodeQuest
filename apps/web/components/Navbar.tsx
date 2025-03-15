@@ -1,17 +1,28 @@
 "use client";
-import { Code2, Github, Menu, X } from "lucide-react";
+import {
+  Code2,
+  Github,
+  HelpCircle,
+  LogOut,
+  Menu,
+  Settings,
+  User,
+  X,
+} from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "../src/components/ui/button";
 import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import { cn } from "app/lib/utils";
 
 const Navbar = () => {
   const { data, status } = useSession();
   const isLoading = status == "loading" ? true : false;
-  console.log("d", data);
 
   const [menubar, setMenuBar] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,6 +30,22 @@ const Navbar = () => {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   return (
@@ -55,29 +82,87 @@ const Navbar = () => {
               >
                 Leaderboard
               </a>
-              
-                {  
-                   !isLoading && !data?.user &&
-                   <Button
-                     onClick={() => signIn()}
-                     variant={"outline"}
-                     className="cursor-pointer rounded hover:bg-gray-300 transition-all duration-300"
-                   >
-                     Sign In
-                   </Button>
-                }
 
-                {  
-                   !isLoading && data?.user &&
-                   <Button
-                     onClick={() => signOut()}
-                     variant={"outline"}
-                     className="cursor-pointer rounded hover:bg-gray-300 transition-all duration-300"
-                   >
-                     Log out
-                   </Button>
-                }
-     
+              {!isLoading && !data?.user && (
+                <Button
+                  onClick={() => signIn()}
+                  variant={"outline"}
+                  className="cursor-pointer rounded hover:bg-gray-300 transition-all duration-300"
+                >
+                  Sign In
+                </Button>
+              )}
+
+              {!isLoading && data?.user && 
+                  <div className="relative" ref={dropdownRef}>
+                    <button
+                      className="overflow-hidden rounded-full border-2 border-transparent profile-avatar focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      onClick={() => setShowDropdown(!showDropdown)}
+                      aria-label="User menu"
+                    >
+                      <img
+                        src="https://ui-avatars.com/api/?name=User&background=random"
+                        alt="User"
+                        className="h-8 w-8 rounded-full object-cover"
+                      />
+                    </button>
+                    {
+                      showDropdown &&
+                      <div
+                      className= "absolute right-0 mt-2 w-56 rounded-md shadow-lg z-50 bg-popover text-popover-foreground"
+                      style={{
+                        transformOrigin: "top right",
+                      }}
+                    >
+                      <div className="p-1 rounded-md">
+                        {/* First Section */}
+                        <div className="px-1 py-1 space-y-1">
+                          <button
+                            className="flex cursor-pointer w-full items-center gap-2 rounded-md px-3 py-2 text-sm menu-item"
+                            onClick={() => {
+                              setShowDropdown(false);
+                              //   navigate("/profile");
+                            }}
+                          >
+                            <User className="h-4 w-4" />
+                            Profile
+                          </button>
+                        </div>
+
+                        {/* Separator */}
+                        <div className="my-1 h-px bg-border" />
+
+                        {/* Second Section */}
+                        <div className="px-1 py-1 space-y-1">
+                          <button
+                            className="flex cursor-pointer w-full items-center gap-2 rounded-md px-3 py-2 text-sm menu-item"
+                            onClick={() => {
+                              setShowDropdown(false);
+                              //   navigate("/help");
+                            }}
+                          >
+                            <HelpCircle className="h-4 w-4" />
+                            Help Center
+                          </button>
+                        </div>
+
+                        {/* Separator */}
+                        <div className="my-1 h-px bg-border" />
+
+                        <div className="px-1 py-1">
+                          <button
+                            className="flex cursor-pointer w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-destructive hover:bg-destructive/10 menu-item"
+                            onClick={()=>signOut()}
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Logout
+                          </button>
+                        </div>
+                      </div>
+                      </div>
+                     }
+                  </div>
+                  }
             </div>
           </div>
         </div>

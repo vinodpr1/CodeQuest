@@ -103,7 +103,7 @@ export const AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET || "s3cret",
   pages: {
     signIn: "/auth",
- },
+  },
   callbacks: {
     async session({
       session,
