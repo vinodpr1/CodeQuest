@@ -45,7 +45,7 @@ export const AuthOptions = {
         const hashPassword = bcrypt.hashSync(credentials?.password, salt);
 
         const user = {
-          name: credentials?.name,
+          name: credentials?.email,
           email: credentials?.email,
           password: credentials?.password,
         };
@@ -101,6 +101,9 @@ export const AuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET || "s3cret",
+  pages: {
+    signIn: "/auth",
+ },
   callbacks: {
     async session({
       session,
