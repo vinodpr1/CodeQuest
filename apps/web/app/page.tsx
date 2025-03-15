@@ -1,15 +1,17 @@
-"use client"
-import React from 'react'
-import { useSession } from 'next-auth/react'
+"use client";
+import React from "react";
+import { useSession } from "next-auth/react";
+import Landing from "../components/Landing";
 
 const page = () => {
   const session = useSession();
   return (
-   <div>
-       Hello world
-       {JSON.stringify(session)}
-   </div>
-  )
-}
+    <main className="mx-auto px-8">
+      <div className="container mx-auto">
+        <Landing />
+      </div>
+    </main>
+  );
+};
 
-export default page
+export default page;

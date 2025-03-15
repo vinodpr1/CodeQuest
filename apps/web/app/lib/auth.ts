@@ -64,7 +64,7 @@ export const AuthOptions = {
 
         // is user is present then try to signin
         if (isUser) {
-            console.log("isUser is", isUser);
+          console.log("isUser is", isUser);
           if (bcrypt.compareSync(user.password, isUser.password)) {
             const jwt = generateJWT({ id: isUser.id });
             return {
