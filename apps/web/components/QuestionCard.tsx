@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "../src/components/ui/button";
-import Link from "next/link";
 
 interface IEvent {
   title: string;
@@ -9,7 +7,7 @@ interface IEvent {
   endTime: number;
 }
 
-const EventCard = ({ title, id, startTime, endTime }: IEvent) => {
+const QuestionCard = ({ title, id, startTime, endTime }: IEvent) => {
   return (
     <div className="shadow-lg bg-gray-200 hover:translate-y-1 rounded p-4 transition-all duration-500">
       <div className="">
@@ -29,14 +27,12 @@ const EventCard = ({ title, id, startTime, endTime }: IEvent) => {
             <h1>{endTime} Hours</h1>
           </div>
         </div>
-        <Button className="cursor-pointer">
-           <Link href={"/event/2344343"}>
-             Participate
-           </Link>
-        </Button>
+        <button className="py-1 bg-gray-200 rounded text-black font-semibold">
+          Participate
+        </button>
       </div>
     </div>
   );
 };
 
-export default EventCard;
+export default QuestionCard;

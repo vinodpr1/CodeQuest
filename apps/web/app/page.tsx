@@ -4,7 +4,7 @@ import Landing from "../components/Landing";
 
 const page = () => {
   return (
-    <main className="mx-auto px-8">
+    <main className="mx-auto">
       <div className="container mx-auto">
         <Landing />
       </div>
