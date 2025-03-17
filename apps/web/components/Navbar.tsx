@@ -79,7 +79,7 @@ const Navbar = () => {
                 Leaderboard
               </a>
               <a
-                href="/ide"
+                href="/compiler"
                 className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Open IDE

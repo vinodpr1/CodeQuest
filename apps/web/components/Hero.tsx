@@ -29,7 +29,7 @@ const Hero = () => {
               with speed and scalability. reliable and scalable applications
               faster.
             </p>
-            <Link href={"/problems/hiiiiiii"}>
+            <Link href={"/"}>
               <Button className="leetcode-button text-sm md:text-lg">
                 Get Started
               </Button>
