@@ -21,16 +21,16 @@ async function generateFunctionBoilerPlateCode(route:string) {
     const input = fs.readFileSync(filePath, "utf-8");
     const parser = new ProblemDefinitionParser();
     parser.parse(input);
-    // console.log(input);
 
     if(!fs.existsSync(boilerPlatePath)){
         fs.mkdirSync(boilerPlatePath, { recursive: true });
     };
 
     const CPPCode = parser.generateCPP();
+    const JSCode = parser.generateJS();
 
     fs.writeFileSync(path.join(boilerPlatePath, "function.cpp"), CPPCode);
-    fs.writeFileSync(path.join(boilerPlatePath, "function.js"), CPPCode);
+    fs.writeFileSync(path.join(boilerPlatePath, "function.js"),   JSCode);
     fs.writeFileSync(path.join(boilerPlatePath, "function.rs"), CPPCode);
     
     console.log("Boilerplate Code has been Generated SUCCESSFULLLY");

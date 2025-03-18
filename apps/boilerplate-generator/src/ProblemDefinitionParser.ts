@@ -50,4 +50,9 @@ export class ProblemDefinitionParser{
         const input = this.input.map((c)=> `${c.type} ${c.name}`).join(', ');
         return `${this.output[0].type} ${this.functionname} ( ${input} ){\n  //Real implementation goes here\n return result;\n }`;
     }
+
+    generateJS () {
+        const input = this.input.map((c) => c.name).join(", ");
+        return `function ${this.functionname}(${input}){\n  //Implementation goes here\n    return result;\n}`;
+    }
 }
