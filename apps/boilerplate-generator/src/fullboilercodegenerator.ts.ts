@@ -9,7 +9,6 @@ export class FullBoilerCodeGenerator{
 
       const line = structure.split("\n").map((struct) => struct.trim());
       let currentSection: string | null  = null;
-       console.log(line);
       line.forEach((li)=>{
          if (li.startsWith("Problem Name")) {
            this.problemName = this.getProblemName(li);

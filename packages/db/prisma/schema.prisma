@@ -54,7 +54,7 @@ model Question {
   id                          String       @id @default(cuid())
   title                       String @unique
   description                 String
-  slug                        String
+  slug                        String @unique
   events                      EventQuestion[] 
   difficulty                  Difficulty @default(MEDIUM)
   solved                       Int  @default(0)
