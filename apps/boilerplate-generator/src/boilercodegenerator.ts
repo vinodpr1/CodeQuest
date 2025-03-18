@@ -1,10 +1,10 @@
-export class ProblemDefinitionParser{
+export class BoilerCodeGenerator{
     problemName: string = "";
     functionname: string = "";
     input: {type: string, name: string}[] = []
     output: {type: string, name: string}[] = []
 
-    async parse(structure:string){
+    parse(structure:string): void{
        
        const line = structure.split("\n").map((struct) => struct.trim());
        let currentSection: string | null  = null;
@@ -26,32 +26,31 @@ export class ProblemDefinitionParser{
             if (field) this.output.push(field);
           }
        })
-       console.log(this.output);
     }
 
-    getProblemName(li: string){
+    getProblemName(li: string): string {
        let x = li.match  (/: "(.*)"$/);
        if(!x) return "";
        return x[1];
     }
 
-    getFunctionName(li: string){
+    getFunctionName(li: string): string{
         let x = li.match(/: (\w+)$/);
         if(!x) return "";
         return x[1];
     }
 
-    getIOValue (li:any) {
+    getIOValue (li:string) : { type: string; name: string } | null {
         const match = li.match(/Field: (\w+(?:<\w+>)?) (\w+)$/);
         return match ? { type: match[1], name: match[2] } : null;
     }
 
-    generateCPP () {
+    generateCPP (): string {
         const input = this.input.map((c)=> `${c.type} ${c.name}`).join(', ');
         return `${this.output[0].type} ${this.functionname} ( ${input} ){\n  //Real implementation goes here\n return result;\n }`;
     }
 
-    generateJS () {
+    generateJS (): string {
         const input = this.input.map((c) => c.name).join(", ");
         return `function ${this.functionname}(${input}){\n  //Implementation goes here\n    return result;\n}`;
     }
