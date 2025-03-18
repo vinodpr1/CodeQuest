@@ -71,10 +71,10 @@ model DefaultCode {
    code                        String
    questionId                  String
    question                    Question @relation(fields: [questionId], references: [id])
-   languageId                   Int
-   language                   Language @relation(fields: [languageId], references: [id])
-   createdAt                  DateTime @default(now())
-   updatedAt                DateTime @default(now())
+   languageId                  Int
+   language                    Language @relation(fields: [languageId], references: [id])
+   createdAt                   DateTime @default(now())
+   updatedAt                   DateTime @default(now())
    @@unique([questionId, languageId])
 }
 

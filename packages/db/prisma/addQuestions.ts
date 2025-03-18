@@ -4,7 +4,7 @@ import { LANGUAGES } from "@repo/common/language";
 
 const basepath = process.env.MOUNT_PATH ?? "../../apps/problems"
 
-const getStatement = async (path: string): Promise<string> =>{
+const getFIleContent = async (path: string): Promise<string> =>{
    return new Promise((resolve, reject)=>{
      fs.readFile(path, "utf-8" ,(error, data)=>{
         if(error){
@@ -16,8 +16,8 @@ const getStatement = async (path: string): Promise<string> =>{
 }
 
 async function main( PROBLEM_SLUG: string, PROBLEM_TITLE: string ){
-    const questionStatement =await getStatement(`${basepath}/${PROBLEM_SLUG}/Problem.md`);
-    await prisma.question.upsert({
+    const questionStatement =await getFIleContent(`${basepath}/${PROBLEM_SLUG}/Problem.md`);
+    const question = await prisma.question.upsert({
         where:{
             slug: PROBLEM_SLUG
         },
@@ -30,6 +30,28 @@ async function main( PROBLEM_SLUG: string, PROBLEM_TITLE: string ){
             description: questionStatement,
         }
     });
-}
 
+    await Promise.all(
+        LANGUAGES.map(async (lang)=>{
+            const code = await getFIleContent(`${basepath}/${PROBLEM_SLUG}/boilerplate/function.${lang.monaco}`);
+            await prisma.defaultCode.upsert({
+                where:{
+                    questionId_languageId: {
+                      questionId: question.id,
+                      languageId: lang.id
+                    }, 
+                },
+                create:{
+                   questionId: question.id,
+                   languageId: lang.id, 
+                   code: code,
+                },
+                update:{
+                    code: code
+                }
+            })
+        })
+    );
+   
+}
 main(process.env.PROBLEM_SLUG!, process.env.PROBLEM_TITLE!);
