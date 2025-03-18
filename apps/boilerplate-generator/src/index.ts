@@ -78,5 +78,5 @@ async function generateFullBoilerPlateCode(route:string) {
   }
 }
 
-// generateFunctionBoilerPlateCode(process.env.GENERATOR_FILE_PAHT || "");
+generateFunctionBoilerPlateCode(process.env.GENERATOR_FILE_PAHT || "");
 generateFullBoilerPlateCode(process.env.GENERATOR_FILE_PAHT || "");
