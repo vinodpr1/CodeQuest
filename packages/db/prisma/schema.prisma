@@ -51,32 +51,33 @@ model EventQuestion {
 }
 
 model Question {
-    id                          String       @id @default(cuid())
-    title                       String
-    description                 String
-    hidden                      Boolean @default(true)
-    difficulty                  Difficulty @default(MEDIUM)
-    slug                        String @unique
-    solved                      Int @default(0)
-    createdAt                   DateTime     @default(now())
-    updatedAt                   DateTime     @default(now())
-    eventSubmissions            EventSubmission[]
-    Events                      EventQuestion[]
-    Submissions                 Submission[]
-    DefaultCodes                DefaultCode[]
+  id                          String       @id @default(cuid())
+  title                       String @unique
+  description                 String
+  slug                        String
+  events                      EventQuestion[] 
+  difficulty                  Difficulty @default(MEDIUM)
+  solved                       Int  @default(0)
+  hidden                       Boolean @default(true)
+  defaultcodes                 DefaultCode[]
+  createdAt                   DateTime     @default(now())
+  updatedAt                   DateTime     @default(now())
+  submissions                 Submission[]
+  eventSubmissions            EventSubmission[]
 }
 
 model DefaultCode {
-   id                          String       @id @default(cuid())
-   languageId                  Int
-   questionId                  String
+   id                          Int       @id @default(autoincrement())
    code                        String
-   createdAt                   DateTime     @default(now())
-   updatedAt                   DateTime     @default(now())
-   question                    Question @relation(fields: [questionId], references: [id]) 
-   language                    Language @relation(fields: [languageId], references: [id])
+   questionId                  String
+   question                    Question @relation(fields: [questionId], references: [id])
+   languageId                   Int
+   language                   Language @relation(fields: [languageId], references: [id])
+   createdAt                  DateTime @default(now())
+   updatedAt                DateTime @default(now())
    @@unique([questionId, languageId])
 }
+
 
 model Language {
    id                          Int       @id @default(autoincrement())
