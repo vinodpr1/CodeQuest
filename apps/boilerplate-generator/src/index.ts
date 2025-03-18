@@ -28,10 +28,11 @@ async function generateFunctionBoilerPlateCode(route:string) {
 
     const CPPCode = parser.generateCPP();
     const JSCode = parser.generateJS();
+    const RSCode = parser.generateRS();
 
     fs.writeFileSync(path.join(boilerPlatePath, "function.cpp"), CPPCode);
     fs.writeFileSync(path.join(boilerPlatePath, "function.js"),   JSCode);
-    fs.writeFileSync(path.join(boilerPlatePath, "function.rs"), CPPCode);
+    fs.writeFileSync(path.join(boilerPlatePath, "function.rs"), RSCode);
     
     console.log("Boilerplate Code has been Generated SUCCESSFULLLY");
 

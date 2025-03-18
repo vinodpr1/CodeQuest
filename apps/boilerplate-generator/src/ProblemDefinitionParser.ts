@@ -55,4 +55,35 @@ export class ProblemDefinitionParser{
         const input = this.input.map((c) => c.name).join(", ");
         return `function ${this.functionname}(${input}){\n  //Implementation goes here\n    return result;\n}`;
     }
+
+    generateRS(): string {
+        const inputs = this.input
+          .map((field) => `${field.name}: ${this.mapTypeToRust(field.type)}`)
+          .join(", ");
+        const outputType = this.mapTypeToRust(this.output[0].type);
+        return `fn ${this.functionname}(${inputs}) -> ${outputType} {\n    // Implementation goes here\n    result\n}`;
+    }
+    
+    mapTypeToRust(type: string): string {
+        switch (type) {
+          case "int":
+            return "i32";
+          case "float":
+            return "f64";
+          case "string":
+            return "String";
+          case "bool":
+            return "bool";
+          case "list<int>":
+            return "Vec<i32>";
+          case "list<float>":
+            return "Vec<f64>";
+          case "list<string>":
+            return "Vec<String>";
+          case "list<bool>":
+            return "Vec<bool>";
+          default:
+            return "unknown";
+        }
+    }
 }

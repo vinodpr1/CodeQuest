@@ -1,4 +1,4 @@
-int classroom ( list<int> arr ){
-  //Real implementation goes here
- return result;
- }
+fn classroom(arr: Vec<i32>) -> i32 {
+    // Implementation goes here
+    result
+}
