@@ -46,7 +46,6 @@ model EventQuestion {
    Question                   Question @relation(fields: [QuestionId], references: [id])
    index                      Int
    solved                     Int @default(0)
-
    @@id([eventId, QuestionId]) 
 }
 
@@ -101,7 +100,7 @@ model Submission {
   activeEventId         String?
   status                SubmissionResult @default(PENDING)
   memory                Int?
-  time                  Float?  
+  time                  Float?
   testcases             TestCase[]
   activeEvent           Event? @relation(fields: [activeEventId], references: [id])
   user                  User @relation(fields: [userId], references: [id])   
@@ -136,12 +135,12 @@ model EventSubmission {
 }
 
 model EventPoints {
-  id               String   @id @default(cuid())
-  contestId        String
-  userId           String
-  points      Int
-  rank             Int
-  user            User @relation(fields: [userId], references: [id])
+  id                  String   @id @default(cuid())
+  contestId           String
+  userId              String
+  points              Int
+  rank                Int
+  user                User @relation(fields: [userId], references: [id])
   @@unique([contestId, userId])
 }
 

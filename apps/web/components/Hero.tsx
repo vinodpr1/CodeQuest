@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 import "../app/globals.css";
@@ -6,7 +5,6 @@ import { Button } from "../src/components/ui/button";
 import { useSession } from "next-auth/react";
 
 const Hero = () => {
-    const session = useSession();
   return (
     <section className="py-8 md:py-12 px-6 md:px-4">
       <div className="w-full flex gap-8 flex-col md:flex-row">
@@ -17,7 +15,6 @@ const Hero = () => {
           <div className="glow top-1/3 right-1/4"></div>
 
           <div className="container mx-auto px-6 relative text-center py-20">
-            {session.data?.user?.email}
             <h1 className="text-xl md:text-3xl font-semibold text-black mb-6 leading-tight">
               Level up with{" "}
               <span className="bg-gradient-to-tr from-orange-500 to-yellow-500 bg-clip-text text-transparent">

@@ -3,9 +3,6 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
-  "scripts": {
-    "dev": "bun ./prisma/addQuestions.ts"
-  },
   "devDependencies": {
     "@types/bun": "latest"
   },
