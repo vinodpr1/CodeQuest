@@ -7,7 +7,8 @@ import {prisma} from "../src/index";
             return {
                 id: lang.id,
                 name: lang.monaco,
-                judge0Id: lang.judhe0ID,
+                judge0Id: lang.judge0Id,
+                extension: lang.extension
             }
         })
      })

@@ -1,5 +1,5 @@
 export const LANGUAGES = [
-    {id: 1, name : "C++",        monaco: "cpp",  judhe0ID: 54},
-    {id: 2, name : "Javascript", monaco: "js",   judhe0ID: 63},
-    {id: 3, name : "Rust",       monaco: "rs",   judhe0ID: 73},
+    {id: 1, name:"Javascript", monaco:"javascript", judge0Id: 63, extension:"js"},
+    {id: 2, name: "C++", monaco: "cpp", judge0Id: 54, extension:"cpp"},
+    {id: 3, name: "Rust", monaco: "rust", judge0Id: 73, extension:"rs"}, 
 ]

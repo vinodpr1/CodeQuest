@@ -33,7 +33,7 @@ async function main( PROBLEM_SLUG: string, PROBLEM_TITLE: string ){
 
     await Promise.all(
         LANGUAGES.map(async (lang)=>{
-            const code = await getFIleContent(`${basepath}/${PROBLEM_SLUG}/boilerplate/function.${lang.monaco}`);
+            const code = await getFIleContent(`${basepath}/${PROBLEM_SLUG}/boilerplate/function.${lang.extension}`);
             await prisma.defaultCode.upsert({
                 where:{
                     questionId_languageId: {
