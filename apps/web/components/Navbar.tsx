@@ -21,13 +21,13 @@ const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setMenuBar(false);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth >= 768) setMenuBar(false);
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -46,7 +46,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-slate-900/80 backdrop-blur-sm px-6 md:px-4  border-b border-slate-800 fixed w-full z-10 ">
+    <nav className="bg-slate-900/80 backdrop-blur-sm px-6 md:px-4 fixed w-full z-10 ">
       <div className="mx-auto px-2 sm:px-6 lg:px-8 container">
         <div className="flex items-center justify-between h-12">
           <div className="font-semibold">
