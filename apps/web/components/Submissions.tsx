@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Submissions = () => {
-  return (
-    <div>Submissions</div>
-  )
-}
+  return <div>Submissions</div>;
+};
 
-export default Submissions
+export default Submissions;

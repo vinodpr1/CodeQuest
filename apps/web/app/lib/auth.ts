@@ -50,8 +50,6 @@ export const AuthOptions = {
           password: credentials?.password,
         };
 
-        console.log("User is", user);
-
         const isUser = await prisma.user.findFirst({
           where: { email: user.email },
           select: {
@@ -64,7 +62,6 @@ export const AuthOptions = {
 
         // is user is present then try to signin
         if (isUser) {
-          console.log("isUser is", isUser);
           if (bcrypt.compareSync(user.password, isUser.password)) {
             const jwt = generateJWT({ id: isUser.id });
             return {

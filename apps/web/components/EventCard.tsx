@@ -30,9 +30,7 @@ const EventCard = ({ title, id, startTime, endTime }: IEvent) => {
           </div>
         </div>
         <Button className="cursor-pointer">
-           <Link href={"/event/2344343"}>
-             Participate
-           </Link>
+          <Link href={"/event/2344343"}>Participate</Link>
         </Button>
       </div>
     </div>

@@ -1,12 +1,12 @@
-import Events from 'components/Events'
-import React from 'react'
+import Events from "components/Events";
+import React from "react";
 
 const page = () => {
   return (
     <main>
-        <Events/>
+      <Events />
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default page;

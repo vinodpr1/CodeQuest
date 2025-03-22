@@ -1,12 +1,12 @@
-import Questions from 'components/Questions'
-import React from 'react'
+import Questions from "components/Questions";
+import React from "react";
 
 const page = () => {
   return (
     <main>
-        <Questions/>
+      <Questions />
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default page;

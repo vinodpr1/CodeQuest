@@ -4,7 +4,6 @@ Given an array of integers, find the maximum sum of a pair of elements in the ar
 
 For example
 
-
 Input
 
 ```
@@ -12,9 +11,11 @@ Input
 ```
 
 Output
+
 ```
 9
 ```
+
 Input
 
 ```
@@ -22,6 +23,7 @@ Input
 ```
 
 Output
+
 ```
 105
 ```

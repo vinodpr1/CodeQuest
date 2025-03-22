@@ -7,10 +7,14 @@ const QuestionCard = ({ question }: { question: any }) => {
     <div className="shadow-lg bg-gray-200 hover:translate-y-1 rounded p-4 transition-all duration-500">
       <div className="flex flex-col gap-2">
         <div className="">
-          <h1 className="text-xl font-semibold">
-            {question.title}
-          </h1>
-          <span className="text-gray-500 text-sm">{question.difficulty == "EASY" ? "Easy question for beginers" : question.difficulty == "MEDIUM" ? "Medium question for intermediate" : "Hard question for Advanced"}</span>
+          <h1 className="text-xl font-semibold">{question.title}</h1>
+          <span className="text-gray-500 text-sm">
+            {question.difficulty == "EASY"
+              ? "Easy question for beginers"
+              : question.difficulty == "MEDIUM"
+                ? "Medium question for intermediate"
+                : "Hard question for Advanced"}
+          </span>
         </div>
         <div className=" pb-1">
           <div className="flex justify-between text-sm text-gray-500 font-normal">

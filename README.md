@@ -83,10 +83,6 @@ Learn more about the power of Turborepo:
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
 
-
-
-
-
 generate boilerplate by setting env while running boilerplate-generator code
 
 image.png
