@@ -145,8 +145,6 @@ const CodeEditor = ({
   );
 };
 
-
-
 const RenderTestCases = () => {
   return (
     <div className="grid grid-cols-6 gap-4 pt-2">
@@ -155,7 +153,7 @@ const RenderTestCases = () => {
          return(
            <div key={index} className="flex flex-col gap-1 justify-center items-center py-2 shadow-xl rounded bg-gray-50">
                <span className="text-xs">Test #{index+1}</span>
-               <RenderResult result="TLE"/>
+               <RenderResult result="PENDING"/>
            </div>
          )})
       }
