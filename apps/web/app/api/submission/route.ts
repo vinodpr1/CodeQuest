@@ -4,9 +4,10 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { Isubmission } from "@repo/common/types";
 import { getFullQuestionDetails } from "app/lib/questionDetails";
+import { AuthOptions } from "app/lib/auth";
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  const session = await getServerSession();
+  const session = await getServerSession(AuthOptions);
   if (!session?.user) {
     return NextResponse.json(
       {
