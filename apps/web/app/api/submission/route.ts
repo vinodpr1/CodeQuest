@@ -61,6 +61,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     );
   console.log(fullQuestionDetails);
 
+  // make a request to submit the problem to judge0 and subscribe a webHook
+
   return NextResponse.json(
     {
       message: "Successfull submissions",
